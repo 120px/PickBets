@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Signup from './Pages/Auth/Register/SignUp';
+import HeaderNavbar from './Components/Layout/HeaderNavbar';
+import BetSideBar from './Components/Layout/BetSideBar';
+import MatchupsContainer from './Components/Layout/MatchupsContainer';
+
+import testData from "./data.json"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+    <HeaderNavbar></HeaderNavbar>
+
+    <div className='main-container'>
+      <MatchupsContainer testData={testData}></MatchupsContainer>
+      <BetSideBar></BetSideBar>
+    </div>
+
+
+    
+      {/* <Signup></Signup> */}
     </div>
   );
 }

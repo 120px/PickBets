@@ -1,0 +1,20 @@
+.category-sidebar-container{
+    width: 400px;
+    height: 100%;
+    padding-bottom: 15px;
+    background-color: #262533;
+    border-radius: 10px;
+}
+
+.category-sidebar-inner{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+}
+
+.sidebar-contents{
+    
+}

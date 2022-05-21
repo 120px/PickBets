@@ -1,0 +1,16 @@
+.sport-category-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+    margin-top: 13px;
+}
+
+.sports-icon{
+    max-width: 25px;
+    max-height: 25px;
+    margin-left: 5px;
+    margin-right: 10px;
+}

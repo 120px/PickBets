@@ -1,0 +1,43 @@
+.wager-towin-container{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.wager-towin-contents{
+    display: flex;
+    flex-direction: row;
+}
+
+.wager-input input{
+    border: none;
+    border-bottom: 1px solid #07A8DA;
+    background-color: transparent;
+}
+
+.wager-payout{
+    /* background-color: blueviolet; */
+    border: 1px solid salmon;
+}
+
+.wager-input-container input{
+    width: 90%;
+    color: whitesmoke;
+    text-align: center;
+    background-color: transparent;
+
+    border: none;
+    border-bottom: 1px solid #07A8DA;
+}
+
+.wager-payout-container{
+    width: 90%;
+}
+
+.wager-title{
+    padding: 15px 0 10px 0;
+}
+
+.payout-title{
+    padding: 15px 0 10px 0;
+}

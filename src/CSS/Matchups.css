@@ -1,6 +1,44 @@
 .matchup-container{
+    background-color: #403F4C;
     height: 100%;
     width: 100%;
-    margin: auto;
+    margin: 0px 10px 0px 10px;
+    padding: 30px;
+    -webkit-box-shadow: 1px 6px 16px 0px #000000; 
+    box-shadow: 1px 6px 16px 0px #000000;
+    border-radius: 15px;
 
+}
+
+.matchup-bet-header-container{
+    
+}
+
+.bet-header-contents{
+    display: flex;
+
+}
+
+.header-sports-title{
+    width: 400px;
+    padding-left: 150px;
+}
+
+.header-bet-types{
+    display: flex;
+    flex: 1 1 0%;
+    
+}
+
+.bet-header-container{
+    display: flex;
+    text-align: center;
+    /* width: 33.3333%; */
+}
+
+.bet-header{
+    padding: 0 50px 0 50px;
+    display: "flex";
+    flex-direction: "column";
+    
 }

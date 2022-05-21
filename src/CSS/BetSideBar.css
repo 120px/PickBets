@@ -1,6 +1,16 @@
 .betsidebar-container{
     height: 100%;
     width: 100%;
-    max-width: 500px;
-    background-color: black;
+    max-width: 350px;
+    background-color: #2C2B3C;
+    border-radius: 10px;
+    padding-top: 15px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+    
 }

@@ -1,0 +1,68 @@
+.bet-container{
+    height: 100%;
+    width: 250px;
+    background-color: #403F4C;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    padding: 15px;
+    margin: auto;
+    margin-bottom: 15px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+}
+
+.bet-matchup-title{
+
+}
+
+.bet-odds-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+}
+
+.bet-odds-matchup-container{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1;
+}
+
+.bet-odds-team{
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+    width: 50%;
+    text-align: center;
+    
+}
+
+.bet-odds-team-name{
+
+}
+
+.bet-odds{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    width: 100px;
+    height: 40px;
+    /* background-color: bisque; */
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.wager-payout-title{
+    padding: 15px 0 5px 0;
+}

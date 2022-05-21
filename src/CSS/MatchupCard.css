@@ -1,8 +1,11 @@
 .matchup-card-container{
     height: 100%;
     width: 100%;
-    background-color: #7C7C7C;
-    margin: 30px 0 30px 0;
+    margin: auto;
+    /* background-color: #7C7C7C; */
+    /* background-color: #403F4C; */
+    padding: 15px 0 15px 0;
+    border-bottom: 1px solid #EFE9E7;
 
 }
 
@@ -71,18 +74,20 @@
     margin: 3px 15px 0px 15px;
 }
 
-button:disabled {
+.moneyLine-bet-btn:disabled {
     pointer-events: none;
 }
    
-button:hover {
-    color: #fff;
-    background-color: #1A1A1A;
+.moneyLine-bet-btn:hover {
+    color: black;
+    /* background-color: #D8DCFF; */
+    /* background-color: #C9F2C7; */
+    background-color: #07A8DA;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
 }
    
-    button:active {
+.moneyLine-bet-btn:active {
     box-shadow: none;
     transform: translateY(0);
 }

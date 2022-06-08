@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../../CSS/Bet.css"
 import WagerAndWinning from './WagerAndWinning'
 
-const Bet = () => {
+interface Props {
+    data: any
+    betting_for: string
+    betting_against: string
+    wager: number
+    potential_payout: number
+    bet_result: string
+}
+
+const Bet = ({ data, betting_for, betting_against, potential_payout, wager, bet_result }: Props) => {
+
     return (
         <div className='bet-container'>
 
             <div className='bet-matchup-title'>
-                <div>
-                    Houstan Texas
+                <div className='betting_for_team'>
+                    {betting_for}
                 </div>
                 Vs
                 <div>
-                    Kansas City Chiefs
+                    {betting_against}
                 </div>
             </div>
 
@@ -20,26 +30,19 @@ const Bet = () => {
 
             </div>
 
-            <div className='bet-odds-container'>
-                <div className='bet-odds-matchup-container'>
-                    <div className='bet-odds-team'>
-                        <div className='bet-odds-team-name'>Houstan Texas</div>
-                        <div className='bet-odds'><span>-185</span></div>
-                    </div>
-                    <div className='bet-odds-team'>
-                        <div className='bet-odds-team-name'>Kansas City Chiefs</div>
-                        <div className='bet-odds'>
-                            <span>-185</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div className='wager-payout-title text-center'>
-                Wager & Payout
-            </div>
+            <WagerAndWinning potential_payout={potential_payout} wager={wager}></WagerAndWinning>
 
-            <WagerAndWinning></WagerAndWinning>
+            <div>
+                {bet_result === "WIN" ?
+                    <div className='display_bet_result' style={{ backgroundColor: "green" }}>
+                        <span>{bet_result}</span>
+                    </div> :
+
+                    <div className='display_bet_result' >
+                        <span>{bet_result}</span>
+                    </div>}
+
+            </div>
 
         </div>
     )

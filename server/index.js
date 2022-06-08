@@ -4,11 +4,6 @@ const PORT = process.env.PORT || 4000
 const app = express()
 const fs = require("fs")
 
-app.get("/", async (req, res) => {
-    console.log("dog")
-    res.send("yes")
-})
-
 app.get("/getMLBOdds", async (req, res) => {
 
     await fs.readFile("../src/dataOdds.json", "utf-8", (err, data) => {

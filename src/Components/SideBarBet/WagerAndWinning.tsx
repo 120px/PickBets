@@ -1,19 +1,20 @@
 import React from 'react'
 import "../../CSS/WagerAndWinning.css"
 
-const WagerAndWinning = () => {
+interface Props{
+    potential_payout: number
+    wager: number
+}
+
+const WagerAndWinning = ({potential_payout, wager} : Props) => {
     return (
         <div className='wager-towin-container'>
             <div className='wager-towin-contents'>
                 <div className='wager-input-container'>
-                    <div className='wager-title text-center'>Wager</div>
-                    <input className='wager-input'></input>
+                    <div className='wager-title text-center'>Wagered: ${wager.toFixed(2)}</div>
                 </div>
                 <div className='wager-payout-container'>
-                    <div className='payout-title text-center'>Payout</div>
-                    <div className='wager-payout text-center'>
-                        <span>$100</span>
-                    </div>
+                    <div className='payout-title text-center'>Potential Payout: ${potential_payout.toFixed(2)}</div>
                 </div>
             </div>
         </div>

@@ -6,7 +6,9 @@
 
 .wager-towin-contents{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
 }
 
 .wager-input input{

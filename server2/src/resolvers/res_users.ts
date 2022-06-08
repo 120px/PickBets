@@ -3,6 +3,7 @@ import { Resolver, Query, Arg, Int, Mutation, Float, InputType, Field, ObjectTyp
 import { type } from "os"
 import { Response } from "express"
 import { MyContext } from "src/types/MyContext"
+import { convertTypeAcquisitionFromJson } from "typescript"
 
 // @Arg("account_balance", () => Float) account_balance: number
 
@@ -55,10 +56,8 @@ export class UserResolver {
             return null
         }
 
-        const user = await User.findOne({
-            where: {
-                id: req.session!.userId
-            }
+        const user = await User.findOneBy({
+            id: req.session!.userId
         })
         return user
     }
@@ -115,7 +114,7 @@ export class UserResolver {
             console.log(err)
             if (err.code === "23505") {
 
-                if (err.detail.includes("username")){
+                if (err.detail.includes("username")) {
                     return {
                         errors: [{
                             field: "username",
@@ -124,17 +123,34 @@ export class UserResolver {
                     }
                 }
 
-                if (err.detail.includes("email")){
+                if (err.detail.includes("email")) {
                     return {
                         errors: [{
                             field: "email",
                             message: "Email already exists!"
                         }]
                     }
-                }                
+                }
             }
         }
 
         return newUser
     }
+    
+    @Mutation(() => Boolean)
+    logout(@Ctx() { req, res }: MyContext) {
+        return new Promise((resolve) =>
+            req.session?.destroy((err) => {
+                res.clearCookie("qid", {path: "/"});
+                if (err) {
+                    console.log(err);
+                    resolve(false);
+                    return;
+                }
+
+                resolve(true);
+            })
+        );
+    }
+
 }

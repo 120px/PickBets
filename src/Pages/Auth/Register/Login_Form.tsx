@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "../../../CSS/Auth.css"
 import { Button } from "react-bootstrap"
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from '../../../GraphQL/LOGIN_USER'
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import {UserLoginContext} from "../../../Components/Context/UserLoginContext"
 
 interface UserLogin {
   username: string
   password: string
 }
 
-const Login_Form = () => {
+interface Props {
+  changeAuthModalMode: () => void
+  handleModalChange: () => void
+}
+
+const Login_Form = ({ changeAuthModalMode, handleModalChange }: Props) => {
+
+  const currentUser = useContext(UserLoginContext)
 
   const [user, setUser] = useState<UserLogin>({
     username: "",
@@ -23,16 +32,17 @@ const Login_Form = () => {
       variables: {
         passwordInput: user.password,
         usernameInput: user.username
-      }
+      },      
     })
 
-    console.log(logginInUser)
+    if (!logginInUser.data?.userLogin.errors){
+      // window.location.reload()
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setUser({ ...user, [name]: value })
-    console.log(user)
   }
 
   const handleOnSubmit = (e: React.SyntheticEvent) => {
@@ -46,6 +56,10 @@ const Login_Form = () => {
 
       <div className='signup-form'>
 
+        <div className='btn-exit-modal' onClick={handleModalChange}>
+          <AiOutlineCloseCircle size={"30"}></AiOutlineCloseCircle>
+        </div>
+
         <div className="form-header">
           <h2>Welcome back!</h2>
         </div>
@@ -54,7 +68,7 @@ const Login_Form = () => {
 
           <div className="user__accountinfo">
             <input name="username" onChange={handleChange} type="text" placeholder='username'></input>
-            <input name="password" onChange={handleChange} type="text" placeholder='password'></input>
+            <input type="password" name="password" onChange={handleChange} placeholder='password'></input>
           </div>
         </div>
 
@@ -63,7 +77,7 @@ const Login_Form = () => {
         </div>
 
         <div>
-          <a >Need an account? Sign up here</a>
+          <a id="switch_auth_modes" onClick={changeAuthModalMode}>Need an account? Sign up here</a>
         </div>
 
       </div>

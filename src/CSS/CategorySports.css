@@ -6,6 +6,9 @@
     align-items: normal;
     align-content: normal;
     margin-top: 13px;
+
+    cursor: pointer;
+    
 }
 
 .sports-icon{

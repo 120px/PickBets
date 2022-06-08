@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int, Float, } from "type-graphql"
-import {Entity, BaseEntity, Column, PrimaryColumn, ManyToOne, JoinColumn, PrimaryGeneratedColumn} from "typeorm"
+import {Entity, BaseEntity, Column, ManyToOne,  PrimaryGeneratedColumn, CreateDateColumn} from "typeorm"
 import { User } from "./User"
 
 export enum BetResults{
@@ -52,17 +52,36 @@ export class Bet extends BaseEntity{
     })
     wager: number
 
-    @Field()
-    @Column({default: false})
-    in_progress: boolean
-
-    @Column({
-        type: "enum",
-        enum: BetResults
-    })
+    @Field(() => String)
+    @Column()
     bet_result: string
 
-    // @Column({
+    @Field()
+    @Column()
+    user_id: number
+
+    // setting up relationship
+    @ManyToOne(
+        () => User, 
+        user => user.bets
+    )
+    user: User
+
+    @CreateDateColumn()
+    created_at: Date
+
+    // specifying name of primary key
+    // @Field()
+    // @JoinColumn({
+    //     name: "user_id"
+    // })
+    // user: User
+
+    // @Field(() => Number)
+    // @Column()
+    // user_id: number
+
+        // @Column({
     //     type: "enum",
     //     enum: MatchResult
     // })
@@ -74,17 +93,8 @@ export class Bet extends BaseEntity{
     // })
     // bet_type: string 
 
-    //setting up relationship
+    
     // @Field()
-    @ManyToOne(
-        () => User, 
-        user => user.bets
-    )
-
-    //specifying name of primary key
-    @JoinColumn({
-        name: "user_id"
-    })
-    user: User
-
+    // @Column({default: false})
+    // in_progress: boolean
 }

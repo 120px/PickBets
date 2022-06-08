@@ -16,24 +16,27 @@
 
 .bet-header-contents{
     display: flex;
-
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: normal;
+    align-content: normal;
 }
 
 .header-sports-title{
-    width: 400px;
-    padding-left: 150px;
+    display: block;
+    width: 300px;
+    text-align: center;
 }
 
 .header-bet-types{
     display: flex;
-    flex: 1 1 0%;
     
 }
 
 .bet-header-container{
     display: flex;
     text-align: center;
-    /* width: 33.3333%; */
 }
 
 .bet-header{
@@ -41,4 +44,13 @@
     display: "flex";
     flex-direction: "column";
     
+}
+
+.loading_spinner{
+    width: 6rem;
+    height: 6rem;
+}
+
+.fetching_indicator{
+    font-size: 30px;
 }

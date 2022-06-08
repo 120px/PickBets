@@ -7,6 +7,8 @@ import { Bet } from "./Bet"
 @ObjectType()
 @Entity("user")
 export class User extends BaseEntity{
+
+    @Field()
     @PrimaryGeneratedColumn()
     id: number
 
@@ -34,9 +36,10 @@ export class User extends BaseEntity{
     @Column()
     last_name: string
 
+    @Field(() => Number)
     @Column({
         type: "numeric",
-        default: 0
+        default: 1000
     })
     account_balance: number
 

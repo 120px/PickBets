@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import "../../../CSS/Auth.css"
 import { CREATE_USER } from '../../../GraphQL/CREATE_USER'
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 interface UserRegisterInput {
     email: string,
@@ -12,15 +13,23 @@ interface UserRegisterInput {
     username: string,
 }
 
-const SignUpForm: React.FC = ({ }) => {
+interface Props{
+    changeAuthModalMode: () => void
+    handleModalChange: () => void
+}
+
+const SignUpForm = ({changeAuthModalMode, handleModalChange} : Props) => {
 
     const [newUser, setNewUser] = useState<UserRegisterInput>({ email: "", first_name: "", last_name: "", password: "", username: "" })
     const [responseErrors, setResponseErrors] = useState("")
     const [userRegister, { error }] = useMutation(CREATE_USER)
     const errorUsername = React.useRef() as React.MutableRefObject<HTMLInputElement>;
     const errorEmail = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+    const errorRegex = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+    const errorLengthUsername = React.useRef() as React.MutableRefObject<HTMLInputElement>;
 
     const addUser = async () => {
+        
         const potentialUser = await userRegister({
             variables: {
                 userInput: {
@@ -32,25 +41,25 @@ const SignUpForm: React.FC = ({ }) => {
                 }
             }
         })
-
         if (potentialUser.data){
-            console.log(potentialUser.data?.userRegister.errors[0].field)
-            console.log(potentialUser.data?.userRegister.errors[0].message)
-
+            
             if (potentialUser.data?.userRegister.errors[0].field === "username"){
                 errorUsername.current.focus()
-                errorUsername.current.className = "error"
+                errorUsername.current.className = "display_input_error"
+                setResponseErrors(potentialUser.data?.userRegister.errors[0].message)
+                return
             }
 
             if (potentialUser.data?.userRegister.errors[0].field === "email"){
                 errorEmail.current.focus()
-                errorUsername.current.className = ""
-                errorEmail.current.className = "error"
+                errorEmail.current.className = "display_input_error"
+                await setResponseErrors(potentialUser.data?.userRegister.errors[0].message)
+                return
             }
 
-            await setResponseErrors(potentialUser.data?.userRegister.errors[0].message)
         }else{
             await setResponseErrors("Your account has been created successfully!")
+        
         }
     }
 
@@ -61,23 +70,42 @@ const SignUpForm: React.FC = ({ }) => {
 
     const handleOnSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
+        const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (newUser.email === null || newUser.first_name === "" || newUser.last_name === "" || newUser.password == "" || newUser.username == ""){
+            errorRegex.current.innerText = "Please fill out all inputs"
+            return
+        }
+
+        if (newUser.username.length < 2){
+            errorRegex.current.innerText = "Username must be greater than 2 characters"
+            return
+        }
+
+        if (EMAIL_REGEX.test(newUser.email) === false){
+            errorRegex.current.innerText = "Please enter a valid email address"
+            errorEmail.current.focus()
+            return
+        }
         addUser()
-
     }
-
-    
 
     return (
         <div>
             <form className='signup-form-container' onSubmit={handleOnSubmit}>
                 <div className='signup-form'>
+                    
+                    <div className='btn-exit-modal' onClick={handleModalChange}>
+                        <AiOutlineCloseCircle size={"30"}></AiOutlineCloseCircle>
+                    </div>
 
                     <div className="form-header">
                         <h2>Ready to become a <span id="emphasis__winner">winner</span>?</h2>
                     </div>
 
-                    <div className="display_error">
+                    <div className="display_register_error">
                         {responseErrors !== null ? responseErrors : null}
+                        <p ref={errorRegex}></p>
                     </div>
 
                     <div className='form-contents'>
@@ -89,7 +117,7 @@ const SignUpForm: React.FC = ({ }) => {
                         <div className="user__accountinfo">
                             <input ref={errorUsername} name="username" type="text" onChange={handleChange} placeholder='username'></input>
                             <input ref={errorEmail} name="email" type="text" onChange={handleChange} placeholder='email'></input>
-                            <input name="password" type="text" onChange={handleChange} placeholder='password'></input>
+                            <input name="password" type="password" onChange={handleChange} placeholder='password'></input>
                         </div>
                     </div>
 
@@ -98,7 +126,7 @@ const SignUpForm: React.FC = ({ }) => {
                     </div>
 
                     <div>
-                        <a >Already have an account? Log in here</a>
+                        <a id="switch_auth_modes" onClick={changeAuthModalMode}>Already have an account? Log in here</a>
                     </div>
                 </div>
             </form>

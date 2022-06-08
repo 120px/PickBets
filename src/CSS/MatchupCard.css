@@ -2,8 +2,6 @@
     height: 100%;
     width: 100%;
     margin: auto;
-    /* background-color: #7C7C7C; */
-    /* background-color: #403F4C; */
     padding: 15px 0 15px 0;
     border-bottom: 1px solid #EFE9E7;
 
@@ -25,6 +23,9 @@
     justify-content: space-around;
     align-items: normal;
     align-content: normal;
+
+    width: 300px;
+    text-align: center;
 }
 
 .matchup-card-bets-container{
@@ -72,6 +73,8 @@
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
     touch-action: manipulation;
     margin: 3px 15px 0px 15px;
+
+    
 }
 
 .moneyLine-bet-btn:disabled {

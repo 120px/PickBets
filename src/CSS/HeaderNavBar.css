@@ -1,0 +1,18 @@
+.header_user_section{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.header_user_nameAndBalance{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-end;
+}
+
+.header_user_nameAndBalance span{
+    margin: 0 10px 0 10px
+}

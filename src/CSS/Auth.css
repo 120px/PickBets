@@ -1,17 +1,19 @@
-.signup-form-container{
+.signup-form-container {
     width: 100%;
     margin: auto;
     height: 100%;
     position: fixed;
     left: 0;
     right: 0;
-    top: 0;
-    
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    top: 50;
+
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
-.signup-form{
+.signup-form {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -21,32 +23,32 @@
 
     background-color: #656472;
     width: 40%;
-    height:max-content;
+    height: max-content;
     margin: auto;
     padding-bottom: 15px;
     border-radius: 15px;
-    
+
 }
 
-.form-header{
+.form-header {
     margin: 10px 0 15px 0;
 }
 
-#emphasis__winner{
+#emphasis__winner {
     font-weight: bolder;
     font-style: italic;
 }
 
-.form-contents{ 
+.form-contents {
     width: 500px;
-    
+
 }
 
-.form-contents input{
+.form-contents input {
     max-width: 500px;
 }
 
-.user__nameinfo{
+.user__nameinfo {
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -54,39 +56,72 @@
     justify-content: space-between;
 }
 
-.user__accountinfo{
+.user__accountinfo {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     align-content: normal;
 }
 
-.user__nameinfo input{
-    border: 1px solid black;
-    border-radius: 5px;
-    height: 40px;
-    
-    
-}
-
-.user__accountinfo input{
+.user__accountinfo input {
     margin: 10px 0 10px 0;
     height: 40px;
+    color: #333;
+    font-size: 1.2rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    outline: none;
+    text-align: center;
+
 }
 
-.btnSignUp{
+.form-contents input {
+    margin: 0 0 10px 0;
+    padding: .3rem 1rem;
+    font-size: 1rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-bottom: 0.3rem solid transparent;
+    outline: none;
+    text-align: center;
+    border-radius: 0.2rem;
+}
+
+.user__accountinfo input:focus {
+    border: 2px solid rgb(13, 187, 240);
+
+}
+
+.btnSignUp {
     margin: 10px 0 20px 0;
 }
 
-.display_error{
-    color: salmon;
-    font-size: larger;
-    font-weight: bolder;
-    margin-bottom: 10px;
+.display_register_error {
+    color: salmon !important;
+    font-size: larger !important;
+    font-weight: bolder !important;
+    margin-bottom: 10px !important;
+
 }
 
-.error {
-    background-color: #fce4e4;
-    border: 1px solid #cc0033;
-    outline: none;
-  }
+.display_input_error {
+    background-color: #fce4e4 !important;
+    border: 1px solid #cc0033 !important;
+    outline: none !important;
+}
+
+.btn-exit-modal {
+    align-self: flex-end;
+}
+
+.btn-exit-modal:hover {
+    cursor: pointer;
+}
+
+#switch_auth_modes {
+    cursor: pointer;
+}

@@ -1,5 +1,5 @@
-.betsidebar-container{
-    height: 100%;
+.betsidebar-container {
+    height: 1000px;
     width: 100%;
     max-width: 350px;
     background-color: #2C2B3C;
@@ -12,5 +12,23 @@
     justify-content: normal;
     align-items: normal;
     align-content: normal;
+
+    overflow: auto;
+
+}
+
+.betsidebar-container::-webkit-scrollbar {
+    width: 10px;
+
+}
+
+.betsidebar_title{
+    text-align: center;
+}
+
+.betsidebar-container {
+    text-align: center;
     
 }
+
+

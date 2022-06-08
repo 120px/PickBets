@@ -1,0 +1,49 @@
+.bet_history_container{
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+
+.bet_history__title{
+    text-align: center;
+    margin: 10px 0 10px 0;
+}
+
+.bet_history__team_names{
+    width: 150px;
+}
+
+.bet_history__bet_result{
+    width: 100px;
+    text-align: center;
+}
+
+.bet_history__team_chosen{
+    font-weight: bolder;
+}
+
+.bet_history__item_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: 10px;
+
+    background-color: #403F4C;
+    border: 1px solid #69a5dd;
+    margin: 5px 0 5px 0;
+}
+
+.bet_result__win{
+    color: rgb(0, 167, 0)
+}
+
+.bet_result__lose{
+    color: red
+}
+
+.bet_history__title{
+    cursor: pointer;
+}

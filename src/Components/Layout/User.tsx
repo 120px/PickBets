@@ -4,10 +4,9 @@ import { UserLoginContext } from '../Context/UserLoginContext'
 const User = () => {
 
     const currentUser = useContext(UserLoginContext)
-
     return (
     <span>
-        {currentUser.whoAmi}
+        {currentUser.state.username}
     </span>
   )
 }

@@ -29,9 +29,7 @@ const MatchupsContainer = ({data, apiData, selectedSport, isApiDataLoading} : Pr
             <div className="bet-header-container">
               <div className="bet-header">Spreads</div>
             </div>
-            <div className="bet-header-container">
-              <div className="bet-header">Money line</div>
-            </div>
+            
           </div>
         </div>
       </div>

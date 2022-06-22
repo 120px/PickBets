@@ -14,9 +14,7 @@ const BetSideBar = () => {
 
   return (
     <div className="betsidebar-container">
-
       <div className='betsidebar_heading'>
-
         <h4 className='betsidebar_title'>
           Recent Bets
         </h4>
@@ -25,10 +23,11 @@ const BetSideBar = () => {
 
         
       </div>
-
+      
       {data !== undefined ? data.findUserBets.map((item: Model_Bet, index: React.Key | null | undefined) =>
 
         <Bet
+          key = {index}
           data={data}
           betting_for={item.betting_for}
           betting_against={item.betting_against}
@@ -39,6 +38,8 @@ const BetSideBar = () => {
         />
 
       ) : null}
+
+      
     </div>
   )
 }

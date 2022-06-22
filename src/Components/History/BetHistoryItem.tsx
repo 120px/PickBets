@@ -26,7 +26,7 @@ const BetHistoryItem = ({ betting_for, betting_against, wager, bet_result, poten
             </div>
 
             <div className='bet_history__wager'>
-                Your wager: ${wager}
+                Wager: ${wager}
             </div>
 
             <div className='bet_history__bet_result'>

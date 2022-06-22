@@ -24,6 +24,8 @@ const Matchups = ({user_data, apiData} : Props) => {
         h2h_away = {data.bookmakers[0].markets.find(h2h => h2h.key === "h2h")?.outcomes[1].price}
         spread_home = {data.bookmakers[0].markets.find(spreads => spreads.key ==="spreads")?.outcomes[0].price}
         spread_away = {data.bookmakers[0].markets.find(spreads => spreads.key ==="spreads")?.outcomes[1].price}
+        point_home = {data.bookmakers[0].markets.find(spreads => spreads.key ==="spreads")?.outcomes[0].point}
+        point_away = {data.bookmakers[0].markets.find(spreads => spreads.key ==="spreads")?.outcomes[1].point}
         commence_time = {data.commence_time}
 
         />

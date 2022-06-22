@@ -13,25 +13,27 @@ export interface API_Data {
             {
               name: string
               price: number
+              point?: number
             },
             {
               name: string
               price: number
+              point?: number
             }
           ]
         },
         {
-          key: string
+          key: "spreads"
           outcomes: [
             {
               name: string
               price: number
-              point: number
+              point?: number
             },
             {
               name: string
               price: number
-              point: number
+              point?: number
             }
           ]
         }

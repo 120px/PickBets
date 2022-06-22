@@ -3,7 +3,7 @@ import { Resolver, Query, Arg, Int, Mutation, Float, Ctx } from "type-graphql"
 import { stringify } from "querystring"
 import { User } from "../entities/User"
 import { MyContext } from "src/types/MyContext"
-import { getConnection, getRepository } from "typeorm"
+import { getConnection, getRepository, } from "typeorm"
 
 
 // @Arg("account_balance", () => Float) account_balance: number
@@ -16,36 +16,65 @@ export class BetResolver {
         return Bet.find()
     }
 
+    @Query(() => [Number, Number])
+    async getUserCountBets(
+        @Ctx() { req }: MyContext,
+    ): Promise<Number[]> {
+        const userCountBetsWon = await getConnection().getRepository(Bet)
+            .createQueryBuilder("user_bets")
+            .where("user_id = :id", { id: req.session?.userId })
+            .andWhere("bet_result = :result", { result: "WIN" })
+            .getCount()
+
+        const userCountBetsLost = await getConnection().getRepository(Bet)
+            .createQueryBuilder("user_bets")
+            .where("user_id = :id", { id: req.session?.userId })
+            .andWhere("bet_result = :result", { result: "LOSE" })
+            .getCount()
+
+        // const userTotalWagered = await getConnection().getRepository(Bet)
+        //     .createQueryBuilder("user_bets")
+        //     .where("user_id = :id", { id: req.session?.userId })
+        //     .select("SUM(bet.potential_payout)")
+        //     .from(Bet, "bet")
+        //     // .where("bet_result = :result", {result : "WIN"})
+        //     .getRawOne()
+
+
+        return [userCountBetsWon, userCountBetsLost,]
+
+    }
+
     @Query(() => [Bet])
     async findUserBets(
-        @Ctx() {req} : MyContext,
-    ) : Promise<Bet[]>{
+        @Ctx() { req }: MyContext,
+    ): Promise<Bet[]> {
 
         const user_bets = await getConnection().getRepository(Bet)
-        .createQueryBuilder("user_bets")
-        .where("user_id = :id", {id: req.session?.userId})
-        .orderBy("created_at")
-        .limit(3)
-        .getMany()
+            .createQueryBuilder("user_bets")
+            .where("user_id = :id", { id: req.session?.userId })
+            .orderBy("created_at", "DESC")
+            .limit(3)
+            .getMany()
 
         console.log(user_bets)
         return user_bets
-        
+
     }
 
     @Query(() => [Bet])
     async findAllUserBets(
-        @Ctx() {req} : MyContext,
-    ) : Promise<Bet[]>{
+        @Ctx() { req }: MyContext,
+    ): Promise<Bet[]> {
 
         const user_Allbets = await getConnection().getRepository(Bet)
-        .createQueryBuilder("user_bets")
-        .where("user_id = :id", {id: req.session?.userId})
-        .getMany()
+            .createQueryBuilder("user_bets")
+            .where("user_id = :id", { id: req.session?.userId })
+            .getMany()
 
         console.log(user_Allbets)
         return user_Allbets
-        
+
     }
 
     @Query(() => User, { nullable: true })
@@ -89,19 +118,18 @@ export class BetResolver {
         let newBalance = user!.account_balance - wager
 
         //handle bet outcomes
-        if (bet_result === "WIN"){
+        if (bet_result === "WIN") {
             newBalance = +user!.account_balance + potential_payout
-        }else{
+        } else {
 
         }
 
-        if(newBalance < 0){
+        if (newBalance < 0) {
             return
         }
 
-        User.createQueryBuilder().update(User).set({account_balance: newBalance}).where("id = :id", {id: req.session?.userId}).execute()
-        
-        // user!.account_balance = user!.account_balance - wager
+        User.createQueryBuilder().update(User).set({ account_balance: newBalance }).where("id = :id", { id: req.session?.userId }).execute()
+
         return newBet
     }
 

@@ -16,3 +16,30 @@
 .header_user_nameAndBalance span{
     margin: 0 10px 0 10px
 }
+
+#mobile__menu{
+    display: none;
+    
+}
+
+.testing{
+    padding-bottom: 9px;
+    background-color: #212529;
+}
+
+.testing a{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+    margin: 10px 0 10px 0;
+    
+}
+
+.display_dropdownMenu{
+    display: inline-flex;
+    padding: 5px 10px 5px 0px;
+    
+}

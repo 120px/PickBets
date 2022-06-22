@@ -1,0 +1,58 @@
+.profile-container {
+    background-color: #403F4C;
+    height: 100%;
+    width: max-content;
+    margin: 0px 10px 0px 10px;
+    padding: 30px;
+    -webkit-box-shadow: 1px 6px 16px 0px #000000;
+    box-shadow: 1px 6px 16px 0px #000000;
+    border-radius: 15px;
+    margin: auto;
+    text-align: center;
+
+}
+
+.user__username{
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-weight: bolder;
+    transition: 0.5s;
+}
+
+.user__personalInformation {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+    text-align: center;
+
+}
+
+.user__statistics{
+    margin-top: 30px;
+}
+
+.user__edit__firstname{
+    text-align: center;
+    width: 300px;
+    margin: 5px 0 5px 0;
+}
+
+.user__edit__lastname{
+    text-align: center;
+    width: 300px;
+    margin: 5px 0 5px 0;
+}
+
+.user__edit__email{
+    text-align: center;
+    width: 300px;
+    margin: 5px 0 5px 0;
+}
+
+.edit_btn{
+    margin-top: 15px;
+}

@@ -69,32 +69,4 @@ export class Bet extends BaseEntity{
 
     @CreateDateColumn()
     created_at: Date
-
-    // specifying name of primary key
-    // @Field()
-    // @JoinColumn({
-    //     name: "user_id"
-    // })
-    // user: User
-
-    // @Field(() => Number)
-    // @Column()
-    // user_id: number
-
-        // @Column({
-    //     type: "enum",
-    //     enum: MatchResult
-    // })
-    // match_result: string
-
-    // @Column({
-    //     type: "enum",
-    //     enum: BetType
-    // })
-    // bet_type: string 
-
-    
-    // @Field()
-    // @Column({default: false})
-    // in_progress: boolean
 }

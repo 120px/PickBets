@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 import "../../../CSS/Auth.css"
 import { CREATE_USER } from '../../../GraphQL/CREATE_USER'
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { BsWindowSidebar } from 'react-icons/bs'
 
 interface UserRegisterInput {
     email: string,
@@ -22,6 +23,7 @@ const SignUpForm = ({changeAuthModalMode, handleModalChange} : Props) => {
 
     const [newUser, setNewUser] = useState<UserRegisterInput>({ email: "", first_name: "", last_name: "", password: "", username: "" })
     const [responseErrors, setResponseErrors] = useState("")
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false)
     const [userRegister, { error }] = useMutation(CREATE_USER)
     const errorUsername = React.useRef() as React.MutableRefObject<HTMLInputElement>;
     const errorEmail = React.useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -41,9 +43,16 @@ const SignUpForm = ({changeAuthModalMode, handleModalChange} : Props) => {
                 }
             }
         })
+
         if (potentialUser.data){
             
-            if (potentialUser.data?.userRegister.errors[0].field === "username"){
+            if(potentialUser.data?.userRegister.errors == null){
+                setShowConfirmationModal(true)
+
+                return
+            }
+
+            if (await potentialUser.data?.userRegister.errors[0].field === "username"){
                 errorUsername.current.focus()
                 errorUsername.current.className = "display_input_error"
                 setResponseErrors(potentialUser.data?.userRegister.errors[0].message)
@@ -61,6 +70,11 @@ const SignUpForm = ({changeAuthModalMode, handleModalChange} : Props) => {
             await setResponseErrors("Your account has been created successfully!")
         
         }
+
+    }
+
+    const handleConfirmationClick = () => {
+        window.location.reload()
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,7 +136,10 @@ const SignUpForm = ({changeAuthModalMode, handleModalChange} : Props) => {
                     </div>
 
                     <div className="btnSignUp">
+                    {showConfirmationModal === false ? 
                         <Button type={"submit"}>Sign Up</Button>
+                   
+                    : <Button onClick={handleConfirmationClick}>Continue</Button>}
                     </div>
 
                     <div>

@@ -11,6 +11,8 @@
 }
 
 .modal_bet_contents {
+    padding-top: 10px;
+    padding-bottom: 25px;
     border-radius: 10px;
     background-color: #656472;
     width: 450px;
@@ -20,6 +22,10 @@
 .bet_details {
     display: flex;
     flex-direction: column;
+}
+
+.bet__header{
+    border-bottom: 2px solid #69a5dd;
 }
 
 .chosen_team_name {}
@@ -37,13 +43,25 @@
 
 }
 
-.bet_wager_container {}
+#bet_wager_input{
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-bottom: 3px solid salmon;
+    outline: none;
+    text-align: center;
+}
+
+#bet_wager_input::placeholder{
+    color: white;
+}
 
 .bet_potentialPayout {}
 
 #chosen_team_title {
     font-weight: bolder;
     font-size: larger;
+    margin-bottom: 4px;
 }
 
 #odds {
@@ -62,6 +80,21 @@
     border-width:0px;
     border:none;
     outline:none;
+}
+
+#bet__pointSpread{
+    background-color: yellow;
+    color: black;
+}
+
+
+.bet__type{
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.chosen_team_title{
+    margin-bottom: 0;
 }
 
 .display_error{

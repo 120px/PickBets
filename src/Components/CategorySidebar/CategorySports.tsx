@@ -38,10 +38,10 @@ const CategorySports = ({setSelectedSport} : Props) => {
                 <div>Soccer</div>
             </div>
 
-            <div onClick={handleChangeSport} id="MMA" className='sport-category-container'>
+            {/* <div onClick={handleChangeSport} id="MMA" className='sport-category-container'>
                 <img className='sports-icon' src={require("../../Media/Images/Categories/MMA_icon.png")} alt='icon'></img>
                 <div>MMA</div>
-            </div>
+            </div> */}
 
         </div>
     )

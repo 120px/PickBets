@@ -6,6 +6,9 @@ export const QUERY_WHOAMI = gql`
     id
     username  
     account_balance
+    first_name
+    last_name
+    email
   }
 }
 `;

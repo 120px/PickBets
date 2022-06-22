@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useReducer, useState } from 'react'
 import "../../../CSS/Auth.css"
 import { Button } from "react-bootstrap"
 import { useMutation } from '@apollo/client'
@@ -18,25 +18,25 @@ interface Props {
 
 const Login_Form = ({ changeAuthModalMode, handleModalChange }: Props) => {
 
-  const currentUser = useContext(UserLoginContext)
-
   const [user, setUser] = useState<UserLogin>({
     username: "",
     password: ""
   })
 
   const [userLoginIn, { error }] = useMutation(LOGIN_USER)
+  const {dispatch} = useContext(UserLoginContext)
 
   const loginUser = async () => {
     const logginInUser = await userLoginIn({
       variables: {
         passwordInput: user.password,
         usernameInput: user.username
-      },      
+      },    
     })
 
     if (!logginInUser.data?.userLogin.errors){
-      // window.location.reload()
+      window.location.reload()
+      
     }
   }
 

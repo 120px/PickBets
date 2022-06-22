@@ -95,9 +95,10 @@ export class UserResolver {
     //registering
     @Mutation(() => UserLoginResponse)
     async userRegister(
-        @Arg("user_input", () => UserRegisterInput) user_input: UserRegisterInput) {
+        @Arg("user_input", () => UserRegisterInput) user_input: UserRegisterInput, 
+        @Ctx() { req }: MyContext) {
 
-        let newUser
+        let newUser 
         try {
             const newUser = await User.create({
                 username: user_input.username,
@@ -107,7 +108,7 @@ export class UserResolver {
                 last_name: user_input.last_name
             }).save()
 
-            console.log("asd1")
+            req.session!.userId = newUser!.id
             return newUser
 
         } catch (err) {

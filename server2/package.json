@@ -2,16 +2,17 @@
   "name": "server2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "nodemon src/server.js",
+    "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/graphql": "^14.5.0",
+    "ts-node": "^10.9.2",
     "typescript": "^4.6.4"
   },
   "dependencies": {
@@ -27,7 +28,6 @@
     "graphql": "^15.3.0",
     "node-fetch": "^2.6.7",
     "pg": "^8.7.3",
-    "ts-node": "^10.7.0",
     "type-graphql": "^1.1.1",
     "typeorm": "^0.3.6"
   }

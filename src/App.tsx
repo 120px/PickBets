@@ -40,7 +40,7 @@ function App() {
   else if (!data) {
 
   } else {
-    
+
   }
 
   const changeMode = (mode: string) => {
@@ -65,6 +65,7 @@ function App() {
       await fetch("/MLB")
         .then(res => (res.json()))
         .then(json => setApiData((json)))
+
     }
     catch (err) {
       console.log(err)
@@ -79,7 +80,9 @@ function App() {
         .then(res => (res.json()))
         .then(json => setApiData((json)))
 
+      
       setIsApiDataLoading(false)
+      console.log(apiData)
     }
     catch (err) {
       console.log(err)
@@ -121,9 +124,9 @@ function App() {
 
         </div> : null}
 
-        {handleModeChange === MODES.PROFILE ? 
+      {handleModeChange === MODES.PROFILE ?
 
-          <UserProfile changeMode={changeMode} user_data={data}></UserProfile>
+        <UserProfile changeMode={changeMode} user_data={data}></UserProfile>
 
         : null}
     </div>

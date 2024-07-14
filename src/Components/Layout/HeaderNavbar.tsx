@@ -25,7 +25,6 @@ interface Props {
 const HeaderNavbar = ({ handleModalChange, changeMode, setSelectedSport }: Props) => {
 
     const [userLogOut,] = useMutation(LOGOUT_USER)
-    const { dispatch } = useContext(UserLoginContext)
     const mobileMenuRef = useRef<any>()
 
     const handleChangeSport = (event: React.MouseEvent<HTMLElement>) => {
@@ -54,7 +53,7 @@ const HeaderNavbar = ({ handleModalChange, changeMode, setSelectedSport }: Props
     //not logged in
     if (loading) {
     }
-    else if (data.whoAmI === null) {
+    else if (data) {
         authSection = (
             <>
                 <Button onClick={handleModalChange}>Log in / Sign up</Button>
@@ -67,8 +66,11 @@ const HeaderNavbar = ({ handleModalChange, changeMode, setSelectedSport }: Props
                 <div className='header_user_section'>
                     <div className='header_user_nameAndBalance'>
                         <BsPersonCircle size={25}></BsPersonCircle>
-                        <span>{data.whoAmI.username}</span>
-                        <span>${(data.whoAmI.account_balance.toFixed(2))}</span>
+                        {data !== undefined ? <div>
+                            <span>{data.whoAmI.username}</span>
+                            <span>${(data.whoAmI.account_balance.toFixed(2))}</span>
+                        </div>
+                            : null}
                     </div>
                     <Button id="primary__link" onClick={() => { doUserLogout() }}>Logout</Button>
 

@@ -24,7 +24,6 @@ const Login_Form = ({ changeAuthModalMode, handleModalChange }: Props) => {
   })
 
   const [userLoginIn, { error }] = useMutation(LOGIN_USER)
-  const {dispatch} = useContext(UserLoginContext)
 
   const loginUser = async () => {
     const logginInUser = await userLoginIn({

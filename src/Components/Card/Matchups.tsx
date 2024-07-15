@@ -1,6 +1,4 @@
-import React from 'react'
 import MatchupCard from './MatchupCard'
-import testData from "../../dataOdds.json"
 import { API_Data } from '../../Models/API_Data'
 
 interface Props {
@@ -16,7 +14,7 @@ const Matchups = ({ user_data, apiData }: Props) => {
 
   return (
     <div className="m-auto">
-      {apiData?.length !== 0 ? apiData!.map((data, index) =>
+      {apiData?.length !== 0 && apiData !== undefined ? apiData!.map((data, index) =>
 
         <MatchupCard
           user_data={user_data}

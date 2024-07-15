@@ -16,7 +16,7 @@ interface Props {
   spread_away: number | undefined
   point_home: number | undefined
   point_away: number | undefined
-  commence_time: Date
+  commence_time: Date | string
 }
 interface Props {
   user_data: any
@@ -38,10 +38,6 @@ const MatchupCard = ({ home_team, away_team, h2h_home, h2h_away, user_data, spre
 
   const handleOnClick_h2hHome = async () => {
 
-    if (user_data.whoAmI === null) {
-      return
-    }
-
     await setBet({
       away_team: away_team,
       home_team: home_team,
@@ -55,9 +51,6 @@ const MatchupCard = ({ home_team, away_team, h2h_home, h2h_away, user_data, spre
   }
 
   const handleOnClick_h2hAway = async () => {
-    if (user_data.whoAmI === null) {
-      return
-    }
 
     await setBet({
       away_team: away_team,
@@ -72,9 +65,6 @@ const MatchupCard = ({ home_team, away_team, h2h_home, h2h_away, user_data, spre
   }
 
   const handleOnClick_spreadHome = async () => {
-    if (user_data.whoAmI === null) {
-      return
-    }
 
     await setBet({
       away_team: away_team,
@@ -91,9 +81,6 @@ const MatchupCard = ({ home_team, away_team, h2h_home, h2h_away, user_data, spre
   }
 
   const handleOnClick_spreadAway = async () => {
-    if (user_data.whoAmI === null) {
-      return
-    }
 
     await setBet({
       away_team: away_team,

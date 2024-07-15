@@ -15,6 +15,8 @@ import { API_Data } from './Models/API_Data';
 import { UserLoginContext } from "./Components/Context/UserLoginContext"
 import UserReducer from './Components/Context/UserReducer';
 import UserProfile from './Components/Layout/UserProfile';
+// import dummyData from "./data.json"
+import dummyData from "./dataOdds.json"
 
 
 function App() {
@@ -30,8 +32,8 @@ function App() {
   const [toggleLoginModal, setToggleLoginModal] = useState(false)
   const [handleModeChange, setHandleModeChange] = useState(MODES.NORMAL)
   const [selectedSport, setSelectedSport] = useState("MLB")
-
   const [state, dispatch] = useReducer(UserReducer, { username: "CHANGED25" })
+  const [currentDummyBets, setDummyBets] = useState([])
 
   //not logged in
   if (loading) {
@@ -72,22 +74,27 @@ function App() {
     }
   }
 
-  const getOdds = async () => {
-
+  const getOdds = async (retries = 3) => {
     try {
       setIsApiDataLoading(true)
-      await fetch("/" + selectedSport)
-        .then(res => (res.json()))
-        .then(json => setApiData((json)))
-
-      
-      setIsApiDataLoading(false)
-      console.log(apiData)
-    }
-    catch (err) {
+      const response = await fetch("/" + selectedSport)
+      if (!response.ok) throw new Error("Network response was not ok");
+      const json = await response.json();
+      setApiData(json);
+      setIsApiDataLoading(false);
+    } catch (err) {
       console.log(err)
+      if (retries > 0) {
+        setTimeout(() => {
+          getOdds(retries - 1)
+        }, 2000)
+      } else {
+        setIsApiDataLoading(false);
+        console.error("Max retries reached. Fetch failed.")
+        setApiData(dummyData)
+      }
     }
-  }
+  };
 
   useEffect(() => {
     getOdds()
@@ -112,7 +119,7 @@ function App() {
           <div className='main-container'>
             <BetCategorySideBar setSelectedSport={setSelectedSport}></BetCategorySideBar>
             <MatchupsContainer isApiDataLoading={isApiDataLoading} selectedSport={selectedSport} apiData={apiData} data={data}></MatchupsContainer>
-            <BetSideBar></BetSideBar>
+            <BetSideBar user_data={data}></BetSideBar>
           </div> : null}
 
       </UserLoginContext.Provider>

@@ -37,15 +37,15 @@ const Bet_Modal = ({ bet, user_data, setShowBetModal }: Props) => {
             return
         }
 
-        if (wager.toString() === ""){
+        if (wager.toString() === "") {
             errorWager.current.innerText = "Please enter a wager"
             return
         }
 
         const result = generateResult()
 
-        const created_bet = await createBet({
-            variables: {
+        if (user_data === undefined) {
+            let newBetData = {
                 betResult: result,
                 inProgress: false,
                 wager: wager,
@@ -53,15 +53,35 @@ const Bet_Modal = ({ bet, user_data, setShowBetModal }: Props) => {
                 odds: bet.odds,
                 bettingAgainst: bet.against_team,
                 bettingFor: bet.chosen_team,
-                userId: user_data.whoAmI.id
-            },
-            refetchQueries: [
-                { query: QUERY_GETALLUSERBETS },
-                { query: QUERY_GETUSERBETS },
-                { query: QUERY_WHOAMI },
-                { query: QUERY_GETBETSSTATS }
-            ]
-        })
+            };
+        
+            let storedDummyBetsString = localStorage.getItem("DUMMY_BETS");
+            let dummyBets = storedDummyBetsString ? JSON.parse(storedDummyBetsString) : [];
+        
+            dummyBets.push(newBetData);
+        
+            localStorage.setItem("DUMMY_BETS", JSON.stringify(dummyBets));
+        } else {
+            const created_bet = await createBet({
+                variables: {
+                    betResult: result,
+                    inProgress: false,
+                    wager: wager,
+                    potentialPayout: parseFloat((wager * bet.odds!).toFixed(2)),
+                    odds: bet.odds,
+                    bettingAgainst: bet.against_team,
+                    bettingFor: bet.chosen_team,
+                    userId: user_data.whoAmI.id
+                },
+                refetchQueries: [
+                    { query: QUERY_GETALLUSERBETS },
+                    { query: QUERY_GETUSERBETS },
+                    { query: QUERY_WHOAMI },
+                    { query: QUERY_GETBETSSTATS }
+                ]
+            })
+        }
+
         setShowBetModal(false)
         errorWager.current.innerText = ""
     }

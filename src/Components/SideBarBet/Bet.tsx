@@ -14,36 +14,37 @@ interface Props {
 const Bet = ({ data, betting_for, betting_against, potential_payout, wager, bet_result }: Props) => {
 
     return (
-        <div className='bet-container'>
+        <div className='flex self-center'>
+            <div className='bet-container'>
 
-            <div className='bet-matchup-title'>
-                <div className='betting_for_team'>
-                    {betting_for}
+                <div className='bet-matchup-title'>
+                    <div className='betting_for_team'>
+                        {betting_for}
+                    </div>
+                    Vs
+                    <div>
+                        {betting_against}
+                    </div>
                 </div>
-                Vs
+
+                <div className='bet-type'>
+
+                </div>
+
+                <WagerAndWinning potential_payout={potential_payout} wager={wager}></WagerAndWinning>
+
                 <div>
-                    {betting_against}
+                    {bet_result === "WIN" ?
+                        <div className='display_bet_result' style={{ backgroundColor: "green" }}>
+                            <span>{bet_result}</span>
+                        </div> :
+
+                        <div className='display_bet_result' >
+                            <span>{bet_result}</span>
+                        </div>}
+
                 </div>
             </div>
-
-            <div className='bet-type'>
-
-            </div>
-
-            <WagerAndWinning potential_payout={potential_payout} wager={wager}></WagerAndWinning>
-
-            <div>
-                {bet_result === "WIN" ?
-                    <div className='display_bet_result' style={{ backgroundColor: "green" }}>
-                        <span>{bet_result}</span>
-                    </div> :
-
-                    <div className='display_bet_result' >
-                        <span>{bet_result}</span>
-                    </div>}
-
-            </div>
-
         </div>
     )
 }

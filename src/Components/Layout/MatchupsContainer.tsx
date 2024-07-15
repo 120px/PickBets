@@ -12,6 +12,27 @@ interface Props {
 }
 
 const MatchupsContainer = ({ data, apiData, selectedSport, isApiDataLoading }: Props) => {
+
+  const CheckForAPIData = () => {
+    if (isApiDataLoading === true)
+      return (
+        <div className='text-center '>
+          <p className='fetching_indicator text-center'>Fetching live odds...</p>
+          <Spinner className='loading_spinner' animation="border" variant="info" />
+        </div>
+      )
+    else if (isApiDataLoading === false && apiData == undefined) {
+      return (
+        <p className='fetching_indicator text-center'>Cannot connect to server... using dummy data</p>
+      )
+    }
+    else {
+      return (
+        <Matchups apiData={apiData} user_data={data}></Matchups>
+      )
+    }
+  }
+
   return (
     <div className="matchup-container">
       <div className='matchup-bet-header-container'>
@@ -34,14 +55,7 @@ const MatchupsContainer = ({ data, apiData, selectedSport, isApiDataLoading }: P
         </div>
       </div>
 
-      {isApiDataLoading === true ?
-
-        <div className='text-center '>
-          <p className='fetching_indicator'>Fetching live odds...</p>
-          <Spinner className='loading_spinner' animation="border" variant="info" />
-        </div>
-
-        : <Matchups apiData={apiData} user_data={data}></Matchups>}
+      {CheckForAPIData()}
 
     </div>
   )
